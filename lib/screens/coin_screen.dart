@@ -4,7 +4,6 @@ import 'package:crypto/models/providers/coin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_html/flutter_html.dart';
 
 class CoinScreen extends StatelessWidget {
   @override
@@ -17,7 +16,7 @@ class CoinScreen extends StatelessWidget {
           children: <Widget>[
             Container(
               width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: 15),
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               child: Row(
                 children: <Widget>[
                   Text(
@@ -32,6 +31,7 @@ class CoinScreen extends StatelessWidget {
                         Icons.star_border_outlined,
                         color: Colors.amber,
                       ),
+                      SizedBox(width: 10),
                       Icon(
                         CupertinoIcons.xmark_circle_fill,
                         color: Colors.amber,
@@ -76,17 +76,14 @@ class CoinScreen extends StatelessWidget {
         RichText(
           text: TextSpan(
             children: [
-// Assuming currencyData['symbol'] is a string like "&euro;"
               TextSpan(
-                text: HtmlEscape().convert(currencyData[
-                    'symbol']), // Convert HTML entity to plain text
+                text: currencyData['code'],
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
                   color: Colors.black54,
                 ),
               ),
-
               TextSpan(
                 text: ' ${currencyData['rate']}',
                 style: TextStyle(
@@ -150,7 +147,7 @@ class BalanceCard extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Text(
-                    coin.usd['rate'],
+                    "\$${coin.usd['rate']}",
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.white,
